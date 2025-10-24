@@ -1,4 +1,4 @@
-package com.example.prato_limpo
+package com.goodvibe.pratolimpo
 
 import io.flutter.embedding.android.FlutterActivity
 
