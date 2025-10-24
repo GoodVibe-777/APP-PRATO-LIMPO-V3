@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../models/scan_result.dart';
@@ -12,6 +11,7 @@ import '../../providers/preferences_provider.dart';
 import '../../providers/scanner_provider.dart';
 import '../../providers/diary_provider.dart';
 import '../../models/diary_entry.dart';
+import '../../widgets/html_widget.dart';
 
 class ScannerScreen extends ConsumerWidget {
   const ScannerScreen({super.key});
