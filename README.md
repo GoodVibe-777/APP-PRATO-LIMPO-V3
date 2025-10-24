@@ -41,6 +41,23 @@ lib/
 flutter build apk --debug
 ```
 
+## Build local
+
+### Requisitos
+
+- Android Studio
+- Java 17
+- Flutter estável
+
+### Comandos
+
+```
+flutter clean
+flutter pub get
+flutter run
+flutter build apk --debug
+```
+
 ## Licença
 
 Projeto educacional para demonstração técnica.
