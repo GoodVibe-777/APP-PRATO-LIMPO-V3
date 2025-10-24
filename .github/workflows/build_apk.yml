@@ -1,0 +1,52 @@
+name: Build APK
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      JAVA_TOOL_OPTIONS: "-Xmx3g"
+      GRADLE_OPTS: "-Dorg.gradle.jvmargs='-Xmx3g -XX:MaxMetaspaceSize=1024m'"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Flutter version
+        run: flutter --version
+
+      - name: Flutter doctor
+        run: flutter doctor -v
+
+      - name: Repair Flutter pub cache
+        run: flutter pub cache repair || true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run build runner
+        run: flutter pub run build_runner build --delete-conflicting-outputs || true
+
+      - name: Build debug APK
+        run: flutter build apk --debug -v
+
+      - name: Upload Gradle logs on failure
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: gradle-logs
+          path: |
+            **/build/**/outputs/**/*.log
+            **/gradle/wrapper/gradle-wrapper.properties
+            android/app/build.gradle
+            pubspec.yaml
