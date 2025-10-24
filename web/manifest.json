@@ -1,0 +1,9 @@
+{
+  "name": "Prato Limpo",
+  "short_name": "PratoLimpo",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F9FAFB",
+  "theme_color": "#10B981",
+  "description": "Prato Limpo — Entenda o que você come"
+}
