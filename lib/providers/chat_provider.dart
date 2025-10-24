@@ -5,14 +5,18 @@ import '../services/gemini_service.dart';
 import 'gemini_provider.dart';
 import 'preferences_provider.dart';
 
-final chatHistoryProvider = StateNotifierProvider<ChatNotifier, List<ChatMessage>>(
-  (ref) => ChatNotifier(ref.read(geminiServiceProvider)),
+final chatHistoryProvider = NotifierProvider<ChatNotifier, List<ChatMessage>>(
+  ChatNotifier.new,
 );
 
-class ChatNotifier extends StateNotifier<List<ChatMessage>> {
-  ChatNotifier(this._service) : super([]);
+class ChatNotifier extends Notifier<List<ChatMessage>> {
+  late final GeminiService _service;
 
-  final GeminiService _service;
+  @override
+  List<ChatMessage> build() {
+    _service = ref.read(geminiServiceProvider);
+    return [];
+  }
 
   Future<void> enviarMensagem(String texto) async {
     final mensagemUsuario = ChatMessage(
