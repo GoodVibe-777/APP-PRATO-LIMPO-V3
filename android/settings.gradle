@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("${rootDir}/../packages/flutter_tools/gradle")
     repositories {
         google()
         mavenCentral()
