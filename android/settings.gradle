@@ -1,5 +1,22 @@
+import java.util.Properties
+
 pluginManagement {
-    includeBuild("${rootDir}/../packages/flutter_tools/gradle")
+    def flutterSdkPath = System.getenv("FLUTTER_HOME")
+    if (flutterSdkPath == null) {
+        Properties properties = new Properties()
+        File localPropertiesFile = new File(rootDir, "local.properties")
+        if (localPropertiesFile.exists()) {
+            localPropertiesFile.withReader("UTF-8") { reader -> properties.load(reader) }
+            flutterSdkPath = properties.getProperty("flutter.sdk")
+        }
+    }
+
+    if (flutterSdkPath == null) {
+        throw new GradleException("Flutter SDK not found. Please set FLUTTER_HOME or flutter.sdk in local.properties.")
+    }
+
+    includeBuild("$flutterSdkPath/packages/flutter_tools/gradle")
+
     repositories {
         google()
         mavenCentral()
