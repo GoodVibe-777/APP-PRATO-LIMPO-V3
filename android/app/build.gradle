@@ -10,15 +10,15 @@ repositories {
 }
 
 android {
-    namespace "com.example.prato_limpo"
-    compileSdk = 34
+    namespace "com.prato_limpo"
+    compileSdk 34
 
     defaultConfig {
-        applicationId = "com.example.prato_limpo"
-        minSdk = 23
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        applicationId "com.prato_limpo"
+        minSdk 21
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
     }
 
     buildTypes {
